@@ -15,6 +15,7 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+
 public class SellerDaoJDBC implements SellerDao {
 
 	private Connection conn;
@@ -117,6 +118,38 @@ public class SellerDaoJDBC implements SellerDao {
 	@Override
 	public void deleteById(Integer id) {
 
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "DELETE FROM coursejdbc.seller WHERE Id=? ";
+		    ps = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, id);
+
+			int rowsAffected = ps.executeUpdate();
+			System.out.println(rowsAffected);
+			if (rowsAffected > 0) {
+
+				rs = ps.getGeneratedKeys();
+				System.out.println("Registro deletado!!");
+
+			} else {
+
+				throw new DbException("Unexpected error! No rows affected!");
+			}
+
+		} catch (SQLException e) {
+
+			throw new DbException(e.getMessage());
+
+		} finally {
+
+			DB.closeResultSet(rs);
+			DB.closeStatement(ps);
+
+		}
+
+		
 	}
 
 	@Override
