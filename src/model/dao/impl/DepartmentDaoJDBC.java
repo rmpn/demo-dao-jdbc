@@ -61,7 +61,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String sql = "UPDATE FROM coursejdbc.department " + "SET Name = ? " + "WHERE Id = ? ";
+		String sql = "UPDATE coursejdbc.department "
+		             +"SET Name = ? "
+		             +"WHERE Id = ? ";
 
 		try {
 

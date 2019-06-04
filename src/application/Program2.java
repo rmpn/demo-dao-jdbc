@@ -37,6 +37,12 @@ public class Program2 {
         System.out.println(department);
         departmentDao.insert(department);
         
+        System.out.println("=====Test 4: update =====");
+        department = departmentDao.findById(7);
+        department.setName("Finanças");
+        departmentDao.update(department);
+        
+        
         
 	}
 
