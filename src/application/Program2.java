@@ -31,6 +31,12 @@ public class Program2 {
         	System.out.println(d);
 		}
         
+        System.out.println("=====Test 3: insert =====");
+        
+        Department department = new Department("Services");
+        System.out.println(department);
+        departmentDao.insert(department);
+        
         
 	}
 

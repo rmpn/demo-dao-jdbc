@@ -28,12 +28,13 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String sql = "INSERT INTO coursejdbc.department Name VALUES(?) ";
+		String sql = "INSERT INTO coursejdbc.department (Name) VALUES (?) ";
 
 		try {
 
 			ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getName());
+
 			int rowsAffected = ps.executeUpdate();
 			if (rowsAffected > 0) {
 				rs = ps.getResultSet();
@@ -45,6 +46,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		} catch (SQLException e) {
 
 			throw new DbException(e.getMessage());
+
 		} finally {
 
 			DB.closeResultSet(rs);
@@ -163,12 +165,12 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		try {
 
 			ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            //
+			//
 			rs = ps.executeQuery();
 			while (rs.next()) {
 
 				list.add(new Department(rs.getInt("Id"), rs.getString("Name")));
-				
+
 			}
 
 			return list;

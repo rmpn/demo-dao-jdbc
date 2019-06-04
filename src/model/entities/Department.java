@@ -12,6 +12,11 @@ public class Department implements Serializable {
 	public Department() {
 
 	}
+	
+	public Department(String name) {
+		this.name = name;
+	}
+	
 
 	public Department(Integer id, String name) {
 
