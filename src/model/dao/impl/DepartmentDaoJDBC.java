@@ -163,11 +163,12 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		try {
 
 			ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-
-			rs = ps.getResultSet();
+            //
+			rs = ps.executeQuery();
 			while (rs.next()) {
 
 				list.add(new Department(rs.getInt("Id"), rs.getString("Name")));
+				
 			}
 
 			return list;
