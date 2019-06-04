@@ -42,8 +42,13 @@ public class Program2 {
         department.setName("Finanças");
         departmentDao.update(department);
         
+        System.out.println("=====Test 5: delete =====");
         
+        System.out.println("Enter id for delete test: ");
+        int registro = sc.nextInt();
+        departmentDao.deleteById(registro);
         
+        sc.close();
 	}
 
 }
